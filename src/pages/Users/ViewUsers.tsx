@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getUsers } from "../../api/User";
 
 type Users = {
@@ -31,6 +32,18 @@ const ViewUsers = () => {
         margin: "10px 30px",
       }}
     >
+      <Link to="/">
+        <button
+          style={{
+            margin: "5px",
+            padding: "5px 10px",
+            fontSize: "20px",
+            cursor: "pointer",
+          }}
+        >
+          Back
+        </button>
+      </Link>
       <h2>Users</h2>
       {data.data?.map((info) => {
         return (
@@ -39,7 +52,7 @@ const ViewUsers = () => {
             <div>Email: {info.email}</div>
             <div>
               Roles:
-              {info.roles.map((role) => {
+              {info.roles?.map((role) => {
                 return (
                   <div key={role.id} style={{ marginLeft: "10px" }}>
                     - {role.description}
